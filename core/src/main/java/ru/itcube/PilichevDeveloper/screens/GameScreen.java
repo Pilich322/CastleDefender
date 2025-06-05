@@ -39,7 +39,7 @@ public class  GameScreen extends ScreenAdapter {
     ContactManager contactManager;
 
     // PLAY state UI
-    MovingBackgroundView backgroundView;
+    ImageView backgroundView;
     ImageView topBlackoutView;
     LiveView liveView;
     TextView scoreTextView;
@@ -79,10 +79,11 @@ public class  GameScreen extends ScreenAdapter {
             main.world
         );
 
-        backgroundView = new MovingBackgroundView(GameResources.BACKGROUND_IMG_PATH);
+        backgroundView = new ImageView(0,0,GameResources.BACKGROUND_GAME_IMG_PATH);
         topBlackoutView = new ImageView(0, 1180, GameResources.BLACKOUT_TOP_IMG_PATH);
+        topBlackoutView = new ImageView(0, 1145,140,GameResources.BLACKOUT_TOP_IMG_PATH);
         liveView = new LiveView(305, 1215);
-        scoreTextView = new TextView(main.commonWhiteFont, 50, 1215);
+        scoreTextView = new TextView(main.commonWhiteFont, 50, 1225);
         pauseButton = new ButtonView(
             605, 1200,
             46, 54,
@@ -156,7 +157,7 @@ public class  GameScreen extends ScreenAdapter {
 
             updateEnemy();
             updateBullets();
-            backgroundView.move();
+            //backgroundView.move();
             gameSession.updateScore();
             scoreTextView.setText("Score: " + gameSession.getScore());
             //liveView.setLeftLives(shipObject.getLiveLeft());

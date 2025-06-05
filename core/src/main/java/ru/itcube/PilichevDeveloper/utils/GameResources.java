@@ -4,14 +4,16 @@ public class GameResources {
 
     // Images for textures
 
-    public static final String BACKGROUND_IMG_PATH = "textures/background.png";
+    public static final String BACKGROUND_IMG_PATH = "textures/ui/background.png";
+    public static final String BACKGROUND_MENU_IMG_PATH = "textures/ui/background.png";
+    public static final String BACKGROUND_GAME_IMG_PATH = "textures/ui/game_background.png";
 
     public static final String BLACKOUT_FULL_IMG_PATH = "textures/blackout_full.png";
-    public static final String BLACKOUT_TOP_IMG_PATH = "textures/blackout_top.png";
-    public static final String BLACKOUT_MIDDLE_IMG_PATH = "textures/blackout_middle.png";
+    public static final String BLACKOUT_TOP_IMG_PATH = "textures/ui/blackout_top.png";
+    public static final String BLACKOUT_MIDDLE_IMG_PATH = "textures/ui/blackout_middle.png";
 
-    public static final String BUTTON_SHORT_BG_IMG_PATH = "textures/button_background_short.png";
-    public static final String BUTTON_LONG_BG_IMG_PATH = "textures/button_background_long.png";
+    public static final String BUTTON_SHORT_BG_IMG_PATH = "textures/ui/button_background_short.png";
+    public static final String BUTTON_LONG_BG_IMG_PATH = "textures/ui/button_background_long.png";
 
     public static final String PAUSE_IMG_PATH = "textures/pause_icon.png";
     public static final String LIVE_IMG_PATH = "textures/life.png";
@@ -19,7 +21,7 @@ public class GameResources {
     public static final String BULLET_IMG_PATH = "textures/bullet.png";
     public static final String SHIP_IMG_PATH = "textures/ship.png";
     public static final String TRASH_IMG_PATH = "textures/trash.png";
-    public static final String CASTLE_IMG_PATH = "textures/castle.jpg";
+    public static final String CASTLE_IMG_PATH = "textures/castle.png";
 
     // Sounds and music for audio
 

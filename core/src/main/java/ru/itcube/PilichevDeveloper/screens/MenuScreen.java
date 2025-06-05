@@ -46,7 +46,7 @@ public class MenuScreen extends ScreenAdapter {
         exitButtonView.draw(main.batch);
         settingsButtonView.draw(main.batch);
         startButtonView.draw(main.batch);
-
+        backgroundView.move();
         main.batch.end();
     }
 

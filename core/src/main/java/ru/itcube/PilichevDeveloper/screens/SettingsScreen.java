@@ -33,7 +33,7 @@ public class SettingsScreen extends ScreenAdapter {
 
         backgroundView = new MovingBackgroundView(GameResources.BACKGROUND_IMG_PATH);
         titleTextView = new TextView(main.largeWhiteFont, 256, 956, "Settings");
-        blackoutImageView = new ImageView(85, 365, GameResources.BLACKOUT_MIDDLE_IMG_PATH);
+        blackoutImageView = new ImageView(85, 365, 450,550,GameResources.BLACKOUT_MIDDLE_IMG_PATH);
         clearSettingView = new TextView(main.commonWhiteFont, 173, 599, "clear records");
 
         musicSettingView = new TextView(
