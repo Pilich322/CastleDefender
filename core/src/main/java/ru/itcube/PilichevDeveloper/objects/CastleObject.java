@@ -1,5 +1,6 @@
 package ru.itcube.PilichevDeveloper.objects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -7,13 +8,12 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import com.badlogic.gdx.math.Rectangle;
-
 import ru.itcube.PilichevDeveloper.utils.GameSettings;
 
-public class CastleObject extends GameObject{
-    int health,level, currentExperience;
-    int startHealth = 100,maxExperience =100;
+public class CastleObject extends GameObject {
+    int health, level = 1, currentExperience = 0;
+    int startHealth = 100, maxExperience = 100;
+
     public CastleObject(String texturePath, int x, int y, int width, int height, World world) {
         super(texturePath, x, y, width, height, GameSettings.CASTLE_BIT, world);
         world.destroyBody(body);
@@ -24,8 +24,6 @@ public class CastleObject extends GameObject{
         setCollide();
         body.setLinearDamping(100);
         health = startHealth;
-        level = 1;
-        currentExperience = 0;
         System.out.println("Fixtures count: " + body.getFixtureList().size);
     }
 
@@ -33,7 +31,7 @@ public class CastleObject extends GameObject{
         return new Vector2(getX(), getY());
     }
 
-    private void setCollide(){
+    private void setCollide() {
         for (Fixture fixture : body.getFixtureList()) {
             body.destroyFixture(fixture);
         }
@@ -53,25 +51,47 @@ public class CastleObject extends GameObject{
         collider.dispose();
     }
 
-    public void lvlUp(){
+    public void lvlUp() {
         level++;
-        health = startHealth + (startHealth*level)/10;
-        maxExperience = maxExperience + (maxExperience*level)/10;
+        health = startHealth + (startHealth * level) / 10;
+        maxExperience = maxExperience + (maxExperience * level) / 10;
     }
 
-    public int getExperience(){
+    public int getExperience() {
         return currentExperience;
     }
+    public int getHealth() {
+        return health;
+    }
+    public void setTexture(String texturePath){
+       texture =  new Texture(texturePath);
+    }
 
-    public void setCurrentExperience(int exp){
+    public int getMaxExperience() {
+        return maxExperience;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setCurrentExperience(int exp) {
         currentExperience += exp;
         checkLevelUp();
     }
 
-    private void checkLevelUp(){
-        if(currentExperience>=maxExperience){
-            currentExperience-=maxExperience;
+    private void checkLevelUp() {
+        if (currentExperience >= maxExperience) {
+            currentExperience -= maxExperience;
             lvlUp();
         }
+    }
+
+    public boolean isAlive(){
+        return getHealth()>0;
+    }
+    public void takeDamage(int dmg) {
+        health -= dmg;
+        if (health < 0) health = 0;
     }
 }

@@ -9,11 +9,11 @@ import ru.itcube.PilichevDeveloper.manager.MemoryManager;
 public class GameSession {
 
     public GameState state;
-    long nextTrashSpawnTime;
+    long nextEnemyTime;
     long sessionStartTime;
     long pauseStartTime;
     private int score;
-    int destructedTrashNumber;
+    int killedEnemyCount;
 
     public GameSession() {
     }
@@ -21,16 +21,17 @@ public class GameSession {
     public void startGame() {
         state = GameState.PLAYING;
         score = 0;
-        destructedTrashNumber = 0;
+        killedEnemyCount = 0;
         sessionStartTime = TimeUtils.millis();
-        nextTrashSpawnTime = sessionStartTime + (long) (GameSettings.STARTING_TRASH_APPEARANCE_COOL_DOWN
-            * getTrashPeriodCoolDown());
+        nextEnemyTime = sessionStartTime + (long) (GameSettings.STARTING_ENEMY_APPEARANCE_COOL_DOWN
+            * getEnemyPeriodCoolDown());
     }
 
     public void pauseGame() {
         state = GameState.PAUSED;
         pauseStartTime = TimeUtils.millis();
     }
+
 
     public void resumeGame() {
         state = GameState.PLAYING;
@@ -53,27 +54,27 @@ public class GameSession {
     }
 
     public void destructionRegistration() {
-        destructedTrashNumber += 1;
+        killedEnemyCount ++;
     }
 
     public void updateScore() {
-        score = (int) (TimeUtils.millis() - sessionStartTime) / 100 + destructedTrashNumber * 100;
+        score = killedEnemyCount *10;
     }
 
     public int getScore() {
         return score;
     }
 
-    public boolean shouldSpawnTrash() {
-        if (nextTrashSpawnTime <= TimeUtils.millis()) {
-            nextTrashSpawnTime = TimeUtils.millis() + (long) (GameSettings.STARTING_TRASH_APPEARANCE_COOL_DOWN
-                * getTrashPeriodCoolDown());
+    public boolean shouldSpawnEnemy() {
+        if (nextEnemyTime <= TimeUtils.millis()) {
+            nextEnemyTime = TimeUtils.millis() + (long) (GameSettings.STARTING_ENEMY_APPEARANCE_COOL_DOWN
+                * getEnemyPeriodCoolDown());
             return true;
         }
         return false;
     }
 
-    private float getTrashPeriodCoolDown() {
+    private float getEnemyPeriodCoolDown() {
         return (float) Math.exp(-0.001 * (TimeUtils.millis() - sessionStartTime + 1) / 1000);
     }
 }

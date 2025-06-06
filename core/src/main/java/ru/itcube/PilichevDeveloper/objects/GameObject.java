@@ -3,6 +3,7 @@ package  ru.itcube.PilichevDeveloper.objects;
 import static  ru.itcube.PilichevDeveloper.utils.GameSettings.SCALE;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
