@@ -42,7 +42,7 @@ public class GameScreen extends ScreenAdapter {
 
 
     // PLAY state UI
-    ImageView backgroundView, topBlackoutView, goldImage;
+    ImageView backgroundView, topBlackoutView;
     TextView scoreTextView, levelTextView, expirienceTextView, healthTextView;
     ButtonView pauseButton;
 
@@ -70,7 +70,7 @@ public class GameScreen extends ScreenAdapter {
             GameSettings.SCREEN_HEIGHT / 8,
             main.world
         );
-        contactManager = new ContactManager(main.world, castleObject);
+        contactManager = new ContactManager(main.world);
         animationManager = new AnimationManager();
         backgroundView = new ImageView(0, 0, GameResources.BACKGROUND_GAME_IMG_PATH);
         topBlackoutView = new ImageView(0, 1180, GameResources.BLACKOUT_TOP_IMG_PATH);
@@ -111,20 +111,17 @@ public class GameScreen extends ScreenAdapter {
             GameResources.BUTTON_SHORT_BG_IMG_PATH,
             "Home"
         );
-        // Загружаем анимации при создании экрана
         AnimationManager.loadAnimation("enemy_run", new String[]{
             GameResources.ENEMY_IMG_PATH,
             GameResources.ENEMY_2_IMG_PATH,
             GameResources.ENEMY_3_IMG_PATH,
             GameResources.ENEMY_2_IMG_PATH
         }, 0.1f, true);
-
         AnimationManager.loadAnimation("enemy_attack", new String[]{
             GameResources.ATTACK_1_IMG_PATH,
             GameResources.ATTACK_2_IMG_PATH,
             GameResources.ATTACK_3_IMG_PATH
         }, 0.15f, false);
-
         AnimationManager.loadAnimation("enemy_explosion", new String[]{
             GameResources.EXPLOSION_1_IMG_PATH,
             GameResources.EXPLOSION_2_IMG_PATH,
@@ -136,7 +133,6 @@ public class GameScreen extends ScreenAdapter {
             GameResources.EXPLOSION_8_IMG_PATH,
             GameResources.EXPLOSION_9_IMG_PATH
         }, 0.08f, false);
-        System.out.println("GameScreen castle 1 "+castleObject.hashCode() + " " + castleObject.getHealth());
     }
 
     @Override
@@ -159,7 +155,7 @@ public class GameScreen extends ScreenAdapter {
                         castleObject,
                         delta
                     );
-                    enemyObject.setDamage(castleObject.getLevel());
+                    enemyObject.updateStat(castleObject.getLevel());
                     enemyArray.add(enemyObject);
                 }
             }
@@ -172,13 +168,11 @@ public class GameScreen extends ScreenAdapter {
 
             updateEnemy(delta);
             updateBullets();
-            //backgroundView.move();
             gameSession.updateScore();
             healthTextView.setText("Health: " + castleObject.getHealth());
             scoreTextView.setText("Score: " + gameSession.getScore());
             levelTextView.setText("Level: " + castleObject.getLevel());
             expirienceTextView.setText("Exp: " + castleObject.getExperience() + "/" + castleObject.getMaxExperience());
-            System.out.println("GameScreen castle 1 "+castleObject.hashCode() + " " + castleObject.getHealth());
             main.stepWorld();
         }
 
@@ -266,7 +260,6 @@ public class GameScreen extends ScreenAdapter {
         for (int i = 0; i < enemyArray.size(); i++) {
             EnemyObject enemy = enemyArray.get(i);
             enemy.update(castleObject.getPosition(), delta);
-            enemy.setDamage(castleObject.getLevel());
             if (enemy.isDead()) {
                 main.world.destroyBody(enemy.body);
                 enemyArray.remove(i--);
@@ -300,19 +293,19 @@ public class GameScreen extends ScreenAdapter {
             enemyArray.remove(i--);
         }
 
-//        if (castleObject != null) {
-//            main.world.destroyBody(castleObject.body);
-//        }
+        if (castleObject != null) {
+            main.world.destroyBody(castleObject.body);
+        }
 
-//        castleObject = new CastleObject(
-//            GameResources.CASTLE_IMG_PATH,
-//            GameSettings.SCREEN_WIDTH / 2,
-//            GameSettings.SCREEN_HEIGHT / 20,
-//            GameSettings.SCREEN_WIDTH,
-//            GameSettings.SCREEN_HEIGHT / 8,
-//            main.world
-//        );
-//        contactManager = new ContactManager(main.world,castleObject);
+        castleObject = new CastleObject(
+            GameResources.CASTLE_IMG_PATH,
+            GameSettings.SCREEN_WIDTH / 2,
+            GameSettings.SCREEN_HEIGHT / 20,
+            GameSettings.SCREEN_WIDTH,
+            GameSettings.SCREEN_HEIGHT / 8,
+            main.world
+        );
+
         bulletArray.clear();
         gameSession.startGame();
     }

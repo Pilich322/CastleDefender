@@ -11,8 +11,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import ru.itcube.PilichevDeveloper.utils.GameSettings;
 
 public class CastleObject extends GameObject {
-    int health, level = 1, currentExperience = 0;
-    int startHealth = 100, maxExperience = 100;
+    int health, level = 1, currentExperience = 0,damage;
+    int startHealth = 100, maxExperience = 100,startDamage=1;
 
     public CastleObject(String texturePath, int x, int y, int width, int height, World world) {
         super(texturePath, x, y, width, height, GameSettings.CASTLE_BIT, world);
@@ -24,6 +24,7 @@ public class CastleObject extends GameObject {
         setCollide();
         body.setLinearDamping(100);
         health = startHealth;
+        damage = startDamage;
         System.out.println("Fixtures count: " + body.getFixtureList().size);
     }
 
@@ -55,6 +56,7 @@ public class CastleObject extends GameObject {
         level++;
         health = startHealth + (startHealth * level) / 10;
         maxExperience = maxExperience + (maxExperience * level) / 10;
+        damage = startDamage* level;
     }
 
     public int getExperience() {
@@ -93,5 +95,9 @@ public class CastleObject extends GameObject {
     public void takeDamage(int dmg) {
         health -= dmg;
         if (health < 0) health = 0;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 }
