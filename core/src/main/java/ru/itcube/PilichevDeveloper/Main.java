@@ -30,6 +30,7 @@ public class Main extends Game {
     public World world;
 
     public BitmapFont largeWhiteFont;
+    public BitmapFont largeBlackFont;
     public BitmapFont commonWhiteFont;
     public BitmapFont commonBlackFont;
 
@@ -52,6 +53,7 @@ public class Main extends Game {
         world = new World(new Vector2(0, 0), true);
 
         largeWhiteFont = FontBuilder.generate(48, Color.WHITE, GameResources.FONT_PATH);
+        largeBlackFont = FontBuilder.generate(48, Color.BLACK, GameResources.FONT_PATH);
         commonWhiteFont = FontBuilder.generate(24, Color.WHITE, GameResources.FONT_PATH);
         commonBlackFont = FontBuilder.generate(24, Color.BLACK, GameResources.FONT_PATH);
 

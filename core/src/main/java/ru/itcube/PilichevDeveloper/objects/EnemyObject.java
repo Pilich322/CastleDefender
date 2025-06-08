@@ -153,7 +153,7 @@ public class EnemyObject extends GameObject {
 
     public void updateStat(int lvl){
         damage = startDamage+lvl/2;
-        health = startHealth +lvl;
+        health = startHealth +(lvl*2);
         experience = startExperience+lvl;
     }
 

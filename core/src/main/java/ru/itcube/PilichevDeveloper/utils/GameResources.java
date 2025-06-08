@@ -4,8 +4,7 @@ public class GameResources {
 
     // Images for textures
 
-    public static final String BACKGROUND_IMG_PATH = "textures/ui/background.png";
-    public static final String BACKGROUND_MENU_IMG_PATH = "textures/ui/background.png";
+    public static final String BACKGROUND_MENU_IMG_PATH = "textures/ui/background_menu.jpg";
     public static final String BACKGROUND_GAME_IMG_PATH = "textures/ui/game_background.png";
 
     public static final String BLACKOUT_FULL_IMG_PATH = "textures/ui/blackout_full.png";

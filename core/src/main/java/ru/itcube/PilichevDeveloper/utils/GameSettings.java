@@ -15,7 +15,7 @@ public class GameSettings {
     public static final float SCALE = 0.05f;
 
     public static float ENEMY_VELOCITY = 10;
-    public static long STARTING_ENEMY_APPEARANCE_COOL_DOWN = 4000; // in [ms] - milliseconds
+    public static long STARTING_ENEMY_APPEARANCE_COOL_DOWN = 2000; // in [ms] - milliseconds
     public static int BULLET_VELOCITY = 40; // in [m/s] - meter per second
 
     public static final short BULLET_BIT = 1;

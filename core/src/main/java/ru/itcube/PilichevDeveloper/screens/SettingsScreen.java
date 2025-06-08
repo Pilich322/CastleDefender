@@ -12,7 +12,6 @@ import ru.itcube.PilichevDeveloper.utils.GameResources;
 import ru.itcube.PilichevDeveloper.Main;
 import ru.itcube.PilichevDeveloper.components.ButtonView;
 import ru.itcube.PilichevDeveloper.components.ImageView;
-import ru.itcube.PilichevDeveloper.components.MovingBackgroundView;
 import ru.itcube.PilichevDeveloper.components.TextView;
 import ru.itcube.PilichevDeveloper.manager.MemoryManager;
 
@@ -20,18 +19,14 @@ public class SettingsScreen extends ScreenAdapter {
 
     Main main;
 
-    MovingBackgroundView backgroundView;
-    TextView titleTextView;
-    ImageView blackoutImageView;
+    ImageView blackoutImageView,backgroundView;
     ButtonView returnButton;
-    TextView musicSettingView;
-    TextView soundSettingView;
-    TextView clearSettingView;
+    TextView titleTextView,musicSettingView,soundSettingView,clearSettingView;
 
     public SettingsScreen(Main main) {
         this.main = main;
 
-        backgroundView = new MovingBackgroundView(GameResources.BACKGROUND_IMG_PATH);
+        backgroundView = new ImageView(0,0,GameResources.BACKGROUND_MENU_IMG_PATH);
         titleTextView = new TextView(main.largeWhiteFont, 256, 956, "Settings");
         blackoutImageView = new ImageView(85, 365, 450,550,GameResources.BLACKOUT_MIDDLE_IMG_PATH);
         clearSettingView = new TextView(main.commonWhiteFont, 173, 599, "clear records");

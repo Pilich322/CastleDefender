@@ -145,7 +145,7 @@ public class GameScreen extends ScreenAdapter {
         handleInput();
         if (gameSession.state == GameState.PLAYING) {
             if (gameSession.shouldSpawnEnemy()) {
-                int numberOfEnemies = 1 + new Random().nextInt(5);
+                int numberOfEnemies = 1 + new Random().nextInt(castleObject.getLevel()+2);
                 for (int i = 0; i < numberOfEnemies; i++) {
                     EnemyObject enemyObject = new EnemyObject(
                         GameResources.ENEMY_IMG_PATH,

@@ -6,25 +6,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import ru.itcube.PilichevDeveloper.components.ImageView;
+import ru.itcube.PilichevDeveloper.components.View;
 import ru.itcube.PilichevDeveloper.utils.GameResources;
 import ru.itcube.PilichevDeveloper.Main;
 import ru.itcube.PilichevDeveloper.components.ButtonView;
-import ru.itcube.PilichevDeveloper.components.MovingBackgroundView;
 import ru.itcube.PilichevDeveloper.components.TextView;
 
 public class MenuScreen extends ScreenAdapter {
     Main main;
-    MovingBackgroundView backgroundView;
+    ImageView backgroundView;
     TextView titleView;
-    ButtonView startButtonView;
-    ButtonView settingsButtonView;
-    ButtonView exitButtonView;
+    ButtonView startButtonView,settingsButtonView,exitButtonView;
 
     public MenuScreen(Main main) {
         this.main = main;
 
-        backgroundView = new MovingBackgroundView(GameResources.BACKGROUND_IMG_PATH);
-        titleView = new TextView(main.largeWhiteFont, 180, 960, "Space Cleaner");
+        backgroundView = new ImageView(0,0,GameResources.BACKGROUND_MENU_IMG_PATH);
+        titleView = new TextView(main.largeBlackFont, 180, 860, "Castle Defender");
         startButtonView = new ButtonView(140, 646, 440, 70, main.commonBlackFont, GameResources.BUTTON_LONG_BG_IMG_PATH, "start");
         settingsButtonView = new ButtonView(140, 551, 440, 70, main.commonBlackFont, GameResources.BUTTON_LONG_BG_IMG_PATH, "settings");
         exitButtonView = new ButtonView(140, 456, 440, 70, main.commonBlackFont, GameResources.BUTTON_LONG_BG_IMG_PATH, "exit");
@@ -46,7 +45,6 @@ public class MenuScreen extends ScreenAdapter {
         exitButtonView.draw(main.batch);
         settingsButtonView.draw(main.batch);
         startButtonView.draw(main.batch);
-        backgroundView.move();
         main.batch.end();
     }
 
