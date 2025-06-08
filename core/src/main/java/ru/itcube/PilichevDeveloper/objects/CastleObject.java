@@ -25,7 +25,6 @@ public class CastleObject extends GameObject {
         body.setLinearDamping(100);
         health = startHealth;
         damage = startDamage;
-        System.out.println("Fixtures count: " + body.getFixtureList().size);
     }
 
     public Vector2 getPosition() {

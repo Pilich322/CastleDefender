@@ -26,10 +26,6 @@ public class GameSettings {
 
     public static final int ENEMY_WIDTH = 100;
     public static final int ENEMY_HEIGHT = 100;
-
-    public static final int BULLET_WIDTH = 15;
-    public static final int BULLET_HEIGHT = 45;
-
-
-
+    public static final int BULLET_WIDTH = 20;
+    public static final int BULLET_HEIGHT = 50;
 }

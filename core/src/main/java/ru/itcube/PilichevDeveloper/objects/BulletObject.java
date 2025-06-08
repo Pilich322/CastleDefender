@@ -31,7 +31,6 @@ public class BulletObject extends GameObject{
         fdef.filter.categoryBits = GameSettings.BULLET_BIT;
         fdef.filter.maskBits = GameSettings.ENEMY_BIT;
 
-
         Fixture fixture = body.createFixture(fdef);
         fixture.setUserData(this);
 

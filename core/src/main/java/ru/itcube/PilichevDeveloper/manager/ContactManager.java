@@ -38,13 +38,11 @@ public class ContactManager {
 
                     if (a instanceof EnemyObject && ((EnemyObject) a).isAlive()) {
                         assert b instanceof CastleObject;
-                        ((CastleObject)b).takeDamage(((EnemyObject) a).getDamage());
                         ((EnemyObject) a).startExplosionPreparation();
                     }
 
                     if (b instanceof EnemyObject && ((EnemyObject) b).isAlive()) {
                         assert a instanceof CastleObject;
-                        ((CastleObject)a).takeDamage(((EnemyObject) b).getDamage());
                         ((EnemyObject) b).startExplosionPreparation();
                     }
                 }
@@ -52,6 +50,28 @@ public class ContactManager {
 
             @Override
             public void endContact(Contact contact) {
+                Fixture fixA = contact.getFixtureA();
+                Fixture fixB = contact.getFixtureB();
+
+                GameObject a = (GameObject) fixA.getUserData();
+                GameObject b = (GameObject) fixB.getUserData();
+                if (a == null || b == null) return;
+
+                int cDef = fixA.getFilterData().categoryBits;
+                int cDef2 = fixB.getFilterData().categoryBits;
+                if ((cDef == GameSettings.ENEMY_BIT && cDef2 == GameSettings.CASTLE_BIT)
+                    || (cDef2 == GameSettings.ENEMY_BIT && cDef == GameSettings.CASTLE_BIT)) {
+
+                    if (a instanceof EnemyObject && ((EnemyObject) a).isAlive()) {
+                        assert b instanceof CastleObject;
+                        ((CastleObject)b).takeDamage(((EnemyObject) a).getDamage());
+                    }
+
+                    if (b instanceof EnemyObject && ((EnemyObject) b).isAlive()) {
+                        assert a instanceof CastleObject;
+                        ((CastleObject)a).takeDamage(((EnemyObject) b).getDamage());
+                    }
+                }
             }
 
             @Override

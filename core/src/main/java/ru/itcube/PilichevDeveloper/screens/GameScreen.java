@@ -229,8 +229,6 @@ public class GameScreen extends ScreenAdapter {
         main.camera.update();
         main.batch.setProjectionMatrix(main.camera.combined);
         ScreenUtils.clear(Color.CLEAR);
-        Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
-        debugRenderer.render(main.world, main.camera.combined);
         main.batch.begin();
         backgroundView.draw(main.batch);
         for (EnemyObject enemy : enemyArray) enemy.draw(main.batch);
@@ -270,7 +268,6 @@ public class GameScreen extends ScreenAdapter {
             if (enemy.isExplosion()) {
                 main.world.destroyBody(enemy.body);
                 enemyArray.remove(i--);
-                gameSession.destructionRegistration();
                 if (main.audioManager.isSoundOn)
                     main.audioManager.explosionSound.play(0.2f);
             }
